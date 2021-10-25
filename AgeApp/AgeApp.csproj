@@ -197,6 +197,10 @@
     <Compile Include="Migrations\202110251912186_PopulateMembershipTypes.Designer.cs">
       <DependentUpon>202110251912186_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110251926144_ApplyAnnotationsToVoterName.cs" />
+    <Compile Include="Migrations\202110251926144_ApplyAnnotationsToVoterName.Designer.cs">
+      <DependentUpon>202110251926144_ApplyAnnotationsToVoterName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ballot.cs" />
@@ -298,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110251912186_PopulateMembershipTypes.resx">
       <DependentUpon>202110251912186_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110251926144_ApplyAnnotationsToVoterName.resx">
+      <DependentUpon>202110251926144_ApplyAnnotationsToVoterName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
