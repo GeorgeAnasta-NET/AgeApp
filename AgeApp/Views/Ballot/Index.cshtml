@@ -1,0 +1,22 @@
+﻿@model IEnumerable<AgeApp.Models.Ballot>
+
+@{
+    ViewBag.Title = "Ballot";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ballot</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ballot in Model) {
+            <tr>
+                <td>@ballot.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

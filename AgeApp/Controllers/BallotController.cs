@@ -10,6 +10,20 @@ namespace AgeApp.Controllers
 {
     public class BallotController : Controller
     {
+        public ViewResult Index() {
+            var ballots = GetBallots();
+
+            return View(ballots);
+        }
+
+        private IEnumerable<Ballot> GetBallots() {
+            return new List<Ballot>
+            {
+                new Ballot { Id = 1, Name = "Shrek" },
+                new Ballot { Id = 2, Name = "Wall-e" }
+            };
+        }
+
         // GET: Ballot/Random
         public ActionResult Random()
         {
@@ -32,15 +46,15 @@ namespace AgeApp.Controllers
             return Content("Id = " + Id);
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy) {
-            if (!pageIndex.HasValue) {
-                pageIndex = 1;
-            }
+        //public ActionResult Index(int? pageIndex, string sortBy) {
+        //    if (!pageIndex.HasValue) {
+        //        pageIndex = 1;
+        //    }
 
-            if (string.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
-            return Content(string.Format("pageIndex = {0} & sortBy = {1}", pageIndex, sortBy));
-        }
+        //    if (string.IsNullOrWhiteSpace(sortBy))
+        //        sortBy = "Name";
+        //    return Content(string.Format("pageIndex = {0} & sortBy = {1}", pageIndex, sortBy));
+        //}
 
         //[Route("Ballot/released/{year}/{month:regerx(\\d{4}):range(1, 12}")]
         //public ActionResult ByReleaseDate(int year, int month) {
