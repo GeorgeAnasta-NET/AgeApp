@@ -213,9 +213,18 @@
     <Compile Include="Migrations\202110251959480_AddBirthDateToVoter.Designer.cs">
       <DependentUpon>202110251959480_AddBirthDateToVoter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110252017082_AddBallot.cs" />
+    <Compile Include="Migrations\202110252017082_AddBallot.Designer.cs">
+      <DependentUpon>202110252017082_AddBallot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110252017526_Genres.cs" />
+    <Compile Include="Migrations\202110252017526_Genres.Designer.cs">
+      <DependentUpon>202110252017526_Genres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ballot.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -285,6 +294,7 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Ballot\Index.cshtml" />
+    <Content Include="Views\Ballot\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110251959480_AddBirthDateToVoter.resx">
       <DependentUpon>202110251959480_AddBirthDateToVoter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110252017082_AddBallot.resx">
+      <DependentUpon>202110252017082_AddBallot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110252017526_Genres.resx">
+      <DependentUpon>202110252017526_Genres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

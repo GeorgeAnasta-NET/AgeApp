@@ -5,23 +5,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace AgeApp.Controllers
 {
     public class BallotController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public BallotController() {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing) {
+            _context.Dispose();
+        }
+
         public ViewResult Index() {
-            var ballots = GetBallots();
+            var ballots = _context.Ballots.Include(b => b.Genre).ToList();
 
             return View(ballots);
         }
 
-        private IEnumerable<Ballot> GetBallots() {
-            return new List<Ballot>
-            {
-                new Ballot { Id = 1, Name = "Shrek" },
-                new Ballot { Id = 2, Name = "Wall-e" }
-            };
+        public ActionResult Details(long id) {
+            var ballot = _context.Ballots.Include(b => b.Genre).SingleOrDefault(b => b.Id == id);
+
+            if (ballot == null) return HttpNotFound();
+
+            return View(ballot);
         }
 
         // GET: Ballot/Random

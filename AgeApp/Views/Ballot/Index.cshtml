@@ -10,12 +10,14 @@
     <thead>
         <tr>
             <th>Ballot</th>
+            <th>Genre</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var ballot in Model) {
             <tr>
-                <td>@ballot.Name</td>
+                <td>@Html.ActionLink(ballot.Name, "Details", "Ballot", new { id = ballot.Id }, null)</td>
+                <td>@ballot.Genre.Name</td>
             </tr>
         }
     </tbody>
