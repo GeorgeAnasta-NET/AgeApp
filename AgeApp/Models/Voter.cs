@@ -8,5 +8,9 @@ namespace AgeApp.Models {
 
         public long Id { get; set; }
         public string Name { get; set; }
+        public bool IsSubscribedToNewsLetter { get; set; }
+
+        public byte MembershipTypeId { get; set; }
+        public MembershipType MembershipType { get; set; }
     }
 }

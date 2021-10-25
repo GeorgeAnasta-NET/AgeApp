@@ -185,11 +185,24 @@
     <Compile Include="Migrations\202110251858358_InitialModel.Designer.cs">
       <DependentUpon>202110251858358_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110251907220_AddIsSubscribeToVoter.cs" />
+    <Compile Include="Migrations\202110251907220_AddIsSubscribeToVoter.Designer.cs">
+      <DependentUpon>202110251907220_AddIsSubscribeToVoter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110251910499_AddMembershipType.cs" />
+    <Compile Include="Migrations\202110251910499_AddMembershipType.Designer.cs">
+      <DependentUpon>202110251910499_AddMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110251912186_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\202110251912186_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>202110251912186_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ballot.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Voter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -276,6 +289,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110251858358_InitialModel.resx">
       <DependentUpon>202110251858358_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110251907220_AddIsSubscribeToVoter.resx">
+      <DependentUpon>202110251907220_AddIsSubscribeToVoter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110251910499_AddMembershipType.resx">
+      <DependentUpon>202110251910499_AddMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110251912186_PopulateMembershipTypes.resx">
+      <DependentUpon>202110251912186_PopulateMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
