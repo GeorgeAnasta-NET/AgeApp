@@ -35,23 +35,23 @@ namespace AgeApp.Controllers
             return View(ballot);
         }
 
-        // GET: Ballot/Random
-        public ActionResult Random()
-        {
-            var ballot = new Ballot() { Name = "Shrek!" };
-            var voters = new List<Voter> {
-                new Voter{Name = "Voter1"},
-                new Voter{Name = "Voter 2 "}
-            };
+        //// GET: Ballot/Random
+        //public ActionResult Random()
+        //{
+        //    var ballot = new Ballot() { Name = "Shrek!" };
+        //    var voters = new List<Voter> {
+        //        new Voter{Name = "Voter1"},
+        //        new Voter{Name = "Voter 2 "}
+        //    };
 
-            var viewModel = new RandomViewModel {
-                Ballot = ballot,
-                Voters = voters
-            };
+        //    var viewModel = new RandomViewModel {
+        //        Ballot = ballot,
+        //        Voters = voters
+        //    };
 
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
         public ActionResult Edit(long Id) {
             return Content("Id = " + Id);
