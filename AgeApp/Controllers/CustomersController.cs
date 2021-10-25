@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace AgeApp.Controllers
 {
@@ -20,7 +21,7 @@ namespace AgeApp.Controllers
 
         public ViewResult Index() 
         {
-            var customers = _context.Voters.ToList();
+            var customers = _context.Voters.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }
