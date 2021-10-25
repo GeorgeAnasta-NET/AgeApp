@@ -26,8 +26,9 @@ namespace AgeApp.Controllers
             return View(customers);
         }
 
-        public ActionResult Details(int id) {
-            var customer = _context.Voters.SingleOrDefault(c => c.Id == id);
+        public ActionResult Details(int id) 
+        {
+            var customer = _context.Voters.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
