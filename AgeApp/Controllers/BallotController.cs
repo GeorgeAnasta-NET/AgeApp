@@ -1,75 +1,89 @@
-﻿using AgeApp.Models;
-using AgeApp.ViewModel;
+﻿using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
+using AgeApp.Models;
+using AgeApp.ViewModel;
 
-namespace AgeApp.Controllers
-{
-    public class BallotController : Controller
-    {
+namespace Vidly.Controllers {
+    public class BallotController : Controller {
         private ApplicationDbContext _context;
-
         public BallotController() {
             _context = new ApplicationDbContext();
         }
-
         protected override void Dispose(bool disposing) {
             _context.Dispose();
         }
-
         public ViewResult Index() {
-            var ballots = _context.Ballots.Include(b => b.Genre).ToList();
-
+            var ballots = _context.Ballots.Include(m => m.Genre).ToList();
             return View(ballots);
         }
 
-        public ActionResult Details(long id) {
-            var ballot = _context.Ballots.Include(b => b.Genre).SingleOrDefault(b => b.Id == id);
+        public ViewResult New() {
+            var genres = _context.Genres.ToList();
 
-            if (ballot == null) return HttpNotFound();
+            var viewModel = new BallotFormViewModel {
+                Genres = genres
+            };
 
-            return View(ballot);
+            return View("BallotForm", viewModel);
         }
 
-        //// GET: Ballot/Random
-        //public ActionResult Random()
-        //{
-        //    var ballot = new Ballot() { Name = "Shrek!" };
-        //    var voters = new List<Voter> {
-        //        new Voter{Name = "Voter1"},
-        //        new Voter{Name = "Voter 2 "}
-        //    };
+        public ActionResult Edit(int id) {
+            var ballot = _context.Ballots.SingleOrDefault(c => c.Id == id);
 
-        //    var viewModel = new RandomViewModel {
-        //        Ballot = ballot,
-        //        Voters = voters
-        //    };
+            if (ballot == null)
+                return HttpNotFound();
 
+            var viewModel = new BallotFormViewModel {
+                Ballot = ballot,
+                Genres = _context.Genres.ToList()
+            };
 
-        //    return View(viewModel);
-        //}
-
-        public ActionResult Edit(long Id) {
-            return Content("Id = " + Id);
+            return View("BallotForm", viewModel);
         }
 
-        //public ActionResult Index(int? pageIndex, string sortBy) {
-        //    if (!pageIndex.HasValue) {
-        //        pageIndex = 1;
-        //    }
 
-        //    if (string.IsNullOrWhiteSpace(sortBy))
-        //        sortBy = "Name";
-        //    return Content(string.Format("pageIndex = {0} & sortBy = {1}", pageIndex, sortBy));
-        //}
+        public ActionResult Details(int id) {
+            var movie = _context.Ballots.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            if (movie == null)
+                return HttpNotFound();
+            return View(movie);
+        }
+        // GET: Movies/Random
+        public ActionResult Random() {
+            var ballot = new Ballot() { Name = "Shrek!" };
+            var voters = new List<Voter>
+            {
+                new Voter { Name = "Customer 1" },
+                new Voter { Name = "Customer 2" }
+            };
+            var viewModel = new RandomBallotViewModel {
+                Ballot = ballot,
+                Voters = voters
+            };
 
-        //[Route("Ballot/released/{year}/{month:regerx(\\d{4}):range(1, 12}")]
-        //public ActionResult ByReleaseDate(int year, int month) {
-        //    return Content(year + "/" + month);
-        //}
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Ballot ballot) {
+            if (ballot.Id == 0) {
+                ballot.DateAdded = DateTime.Now;
+                _context.Ballots.Add(ballot);
+            } else {
+                var ballotInDb = _context.Ballots.Single(m => m.Id == ballot.Id);
+                ballotInDb.Name = ballot.Name;
+                ballotInDb.GenreId = ballot.GenreId;
+                ballotInDb.NumberInStock = ballot.NumberInStock;
+                ballotInDb.ReleaseDate = ballot.ReleaseDate;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Ballot");
+        }
     }
 }

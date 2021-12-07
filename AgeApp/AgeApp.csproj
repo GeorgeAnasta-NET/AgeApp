@@ -221,6 +221,10 @@
     <Compile Include="Migrations\202110252017526_Genres.Designer.cs">
       <DependentUpon>202110252017526_Genres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112072022180_CreatingViewModel.cs" />
+    <Compile Include="Migrations\202112072022180_CreatingViewModel.Designer.cs">
+      <DependentUpon>202112072022180_CreatingViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ballot.cs" />
@@ -231,8 +235,9 @@
     <Compile Include="Models\Voter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\BallotFormViewModel.cs" />
     <Compile Include="ViewModel\CustomerFormViewModel.cs" />
-    <Compile Include="ViewModel\RandomViewModel.cs" />
+    <Compile Include="ViewModel\RandomBallotViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -297,6 +302,8 @@
     <Content Include="Views\Ballot\Index.cshtml" />
     <Content Include="Views\Ballot\Details.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Ballot\New.cshtml" />
+    <Content Include="Views\Ballot\BallotForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110252017526_Genres.resx">
       <DependentUpon>202110252017526_Genres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112072022180_CreatingViewModel.resx">
+      <DependentUpon>202112072022180_CreatingViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

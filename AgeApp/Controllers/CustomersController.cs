@@ -25,9 +25,10 @@ namespace AgeApp.Controllers
             var viewModel = new CustomerFormViewModel {
                 MembershipTypes = membershipTypes
             };
+
             return View("CustomerForm", viewModel);
         }
-
+        
         [HttpPost]
         public ActionResult Save(Voter voter) {
 
@@ -49,9 +50,9 @@ namespace AgeApp.Controllers
 
         public ViewResult Index() 
         {
-            var customers = _context.Voters.Include(c => c.MembershipType).ToList();
+            var voters = _context.Voters.Include(c => c.MembershipType).ToList();
 
-            return View(customers);
+            return View(voters);
         }
 
         public ActionResult Details(int id) 
