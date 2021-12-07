@@ -1,0 +1,33 @@
+﻿@model AgeApp.ViewModel.CustomerFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Voter</h2>
+
+@using (Html.BeginForm("Save", "Customers")) {
+    <div class="form-group">
+        @Html.LabelFor(m => m.Voter.Name)
+        @Html.TextBoxFor(m => m.Voter.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Voter.BirthDate)
+        @Html.TextBoxFor(m => m.Voter.BirthDate, "{0:d MM yyyy}", new { @class = "form-control" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Voter.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Voter.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Voter.IsSubscribedToNewsLetter) Subscribed to New Letter?
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

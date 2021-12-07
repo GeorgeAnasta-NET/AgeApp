@@ -22,6 +22,7 @@ namespace AgeApp.Models
     {
         public DbSet<Voter> Voters { get; set; }
         public DbSet<Ballot> Ballots { get; set; }
+        public DbSet<MembershipType> MembershipTypes { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
