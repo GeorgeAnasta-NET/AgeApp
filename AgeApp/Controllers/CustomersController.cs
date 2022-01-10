@@ -21,8 +21,11 @@ namespace AgeApp.Controllers
         }
 
         public ActionResult New() {
+
             var membershipTypes = _context.MembershipTypes.ToList();
+
             var viewModel = new CustomerFormViewModel {
+                Voter = new Voter(),
                 MembershipTypes = membershipTypes
             };
 
@@ -30,7 +33,16 @@ namespace AgeApp.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Voter voter) {
+
+            if (!ModelState.IsValid) {
+                var viewModel = new CustomerFormViewModel {
+                    Voter = voter,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
 
             if(voter.Id == 0)
                 _context.Voters.Add(voter);
