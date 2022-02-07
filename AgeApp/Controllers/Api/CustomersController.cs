@@ -1,4 +1,6 @@
-﻿using AgeApp.Models;
+﻿using AgeApp.Dtos;
+using AgeApp.Models;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +18,15 @@ namespace AgeApp.Controllers.Api
         {
             _context = new ApplicationDbContext();
         }
+
         //GET /api/customers
-        public IEnumerable<Voter> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Voters.ToList();
+            return _context.Voters.ToList().Select(Mapper.Map<Voter, CustomerDto>);
         }
+
         //GET /api/customers/1
-        public Voter GetCustomer(long id)
+        public CustomerDto GetCustomer(long id)
         {
             var customer = _context.Voters.SingleOrDefault(c => c.Id == id);
 
@@ -30,23 +34,28 @@ namespace AgeApp.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             
 
-            return customer;
+            return Mapper.Map< Voter, CustomerDto>(customer);
         }
-        //PUT /api/customers
+
+        //POST /api/customers
         [HttpPost]
-        public Voter CreateCustomer(Voter customer)
+        public CustomerDto CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            var customer = Mapper.Map<CustomerDto, Voter>(customerDto);
             _context.Voters.Add(customer);
             _context.SaveChanges();
 
-            return customer;
+            customerDto.Id = customer.Id;
+
+            return customerDto;
         }
+
         //PUT /api/customers/1
         [HttpPut]
-        public void UpdateCustomer(long id, Voter customer)
+        public void UpdateCustomer(long id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -56,13 +65,10 @@ namespace AgeApp.Controllers.Api
             if (customerInDb is null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            customerInDb.Name = customer.Name;
-            customerInDb.BirthDate = customer.BirthDate;
-            customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
-            customerInDb.MembershipTypeId = customer.MembershipTypeId;
 
+            Mapper.Map(customerDto, customerInDb);
+            
             _context.SaveChanges();
-
         }
 
         //DELETE /api/customers/1
