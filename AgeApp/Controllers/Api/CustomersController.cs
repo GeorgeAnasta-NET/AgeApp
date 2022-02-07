@@ -54,33 +54,36 @@ namespace AgeApp.Controllers.Api
 
         //PUT /api/customers/1
         [HttpPut]
-        public void UpdateCustomer(long id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(long id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerInDb = _context.Voters.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb is null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
 
             Mapper.Map(customerDto, customerInDb);
             
             _context.SaveChanges();
+            return Ok();
         }
 
         //DELETE /api/customers/1
         [HttpDelete]
-        public void DeleteCustomer(long id)
+        public IHttpActionResult DeleteCustomer(long id)
         {
             var customerInDb = _context.Voters.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb is null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Voters.Remove(customerInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
