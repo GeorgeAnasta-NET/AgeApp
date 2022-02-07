@@ -38,7 +38,6 @@ namespace Vidly.Controllers {
                 return HttpNotFound();
 
             var viewModel = new BallotFormViewModel(ballot) {
-                Ballot = ballot,
                 Genres = _context.Genres.ToList()
             };
 
@@ -78,7 +77,7 @@ namespace Vidly.Controllers {
                     Genres = _context.Genres.ToList()
                 };
 
-                return View("MovieForm", viewModel);
+                return View("BallotForm", viewModel);
             }
 
             if (ballot.Id == 0) {
