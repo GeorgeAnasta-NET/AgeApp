@@ -37,7 +37,7 @@ namespace Vidly.Controllers {
             if (ballot == null)
                 return HttpNotFound();
 
-            var viewModel = new BallotFormViewModel {
+            var viewModel = new BallotFormViewModel(ballot) {
                 Ballot = ballot,
                 Genres = _context.Genres.ToList()
             };
@@ -69,7 +69,18 @@ namespace Vidly.Controllers {
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Ballot ballot) {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new BallotFormViewModel(ballot)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
             if (ballot.Id == 0) {
                 ballot.DateAdded = DateTime.Now;
                 _context.Ballots.Add(ballot);
