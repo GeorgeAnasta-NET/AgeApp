@@ -26,23 +26,22 @@ namespace AgeApp.Controllers.Api
         }
 
         //GET /api/customers/1
-        public CustomerDto GetCustomer(long id)
+        public IHttpActionResult GetCustomer(long id)
         {
             var customer = _context.Voters.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             
-
-            return Mapper.Map< Voter, CustomerDto>(customer);
+            return Ok(Mapper.Map< Voter, CustomerDto>(customer));
         }
 
         //POST /api/customers
         [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customerDto)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customer = Mapper.Map<CustomerDto, Voter>(customerDto);
             _context.Voters.Add(customer);
@@ -50,7 +49,7 @@ namespace AgeApp.Controllers.Api
 
             customerDto.Id = customer.Id;
 
-            return customerDto;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id.ToString()), customerDto);
         }
 
         //PUT /api/customers/1
