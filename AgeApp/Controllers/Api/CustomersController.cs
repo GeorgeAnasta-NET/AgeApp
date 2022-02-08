@@ -2,6 +2,7 @@
 using AgeApp.Models;
 using AutoMapper;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -20,9 +21,14 @@ namespace AgeApp.Controllers.Api
         }
 
         //GET /api/customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Voters.ToList().Select(Mapper.Map<Voter, CustomerDto>);
+            var customerDtos = _context.Voters
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Voter, CustomerDto>);
+
+            return Ok(customerDtos);
         }
 
         //GET /api/customers/1

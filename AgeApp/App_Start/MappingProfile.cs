@@ -16,6 +16,7 @@ namespace AgeApp.App_Start {
 
             Mapper.CreateMap<Voter, CustomerDto>();
             Mapper.CreateMap<Ballot, BallotDto>();
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
 
 
 
