@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,8 +16,8 @@ namespace Vidly.Controllers {
             _context.Dispose();
         }
         public ViewResult Index() {
-            var ballots = _context.Ballots.Include(m => m.Genre).ToList();
-            return View(ballots);
+
+            return View();
         }
 
         public ViewResult New() {
