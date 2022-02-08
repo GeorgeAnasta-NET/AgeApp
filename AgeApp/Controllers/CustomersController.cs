@@ -62,9 +62,10 @@ namespace AgeApp.Controllers
 
         public ViewResult Index() 
         {
-            var voters = _context.Voters.Include(c => c.MembershipType).ToList();
+            //var voters = _context.Voters.Include(c => c.MembershipType).ToList();
 
-            return View(voters);
+            //return View(voters);
+            return View();
         }
 
         public ActionResult Details(int id) 
