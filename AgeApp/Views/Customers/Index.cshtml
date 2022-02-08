@@ -48,7 +48,7 @@ else
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#voters").DataTable({
+            var table = $("#voters").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -82,7 +82,7 @@ else
                         url: "/api/customers/" + button.attr("data-voter-id"),
                         method: "DELETE",
                         success: function () {
-                            button.parents("tr").remove();
+                            table.row(button.parents("tr")).remove().draw();
                         }
                     });
                 }
