@@ -17,9 +17,12 @@ namespace Vidly.Controllers {
         }
         public ViewResult Index() {
 
-            return View();
+            if (User.IsInRole(RoleName.CanMangeBallots))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
+        [Authorize(Roles = RoleName.CanMangeBallots)]
         public ViewResult New() {
             var genres = _context.Genres.ToList();
 

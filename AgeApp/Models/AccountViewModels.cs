@@ -64,6 +64,9 @@ namespace AgeApp.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AgeApp.Models.Ballot>
+
+@{
+    ViewBag.Title = "Ballot";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+<table id="ballots"class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ballot</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#ballots").DataTable({
+                ajax: {
+                    url: "/api/ballots",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+           
+        });
+    </script>
+}

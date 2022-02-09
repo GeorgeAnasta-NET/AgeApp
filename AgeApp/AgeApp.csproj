@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44380</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -245,6 +245,14 @@
     <Compile Include="Migrations\202112072022180_CreatingViewModel.Designer.cs">
       <DependentUpon>202112072022180_CreatingViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202092012174_SeedUsers.cs" />
+    <Compile Include="Migrations\202202092012174_SeedUsers.Designer.cs">
+      <DependentUpon>202202092012174_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202092035210_AddDrivinngLicenseToApplicationUser.cs" />
+    <Compile Include="Migrations\202202092035210_AddDrivinngLicenseToApplicationUser.Designer.cs">
+      <DependentUpon>202202092035210_AddDrivinngLicenseToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Ballot.cs" />
@@ -253,6 +261,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Voter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -495,11 +504,12 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Ballot\Index.cshtml" />
+    <Content Include="Views\Ballot\List.cshtml" />
     <Content Include="Views\Ballot\Details.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
     <Content Include="Views\Ballot\New.cshtml" />
     <Content Include="Views\Ballot\BallotForm.cshtml" />
+    <Content Include="Views\Ballot\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -553,6 +563,12 @@
     <EmbeddedResource Include="Migrations\202112072022180_CreatingViewModel.resx">
       <DependentUpon>202112072022180_CreatingViewModel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202092012174_SeedUsers.resx">
+      <DependentUpon>202202092012174_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202092035210_AddDrivinngLicenseToApplicationUser.resx">
+      <DependentUpon>202202092035210_AddDrivinngLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -572,7 +588,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61704</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61704/</IISUrl>
+          <IISUrl>https://localhost:44380/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
